@@ -62,7 +62,6 @@ router.post("/chat", async (req, res) => {
             content: assistantReply
         });
 
-        thread.updatedAt = new Date();
         await thread.save(); //
 
         res.json({ reply: assistantReply }); 
