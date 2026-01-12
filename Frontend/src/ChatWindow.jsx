@@ -117,29 +117,32 @@ function ChatWindow() {
     const [isOpen, setIsOpen] = useState(false);
 
     const getReply = async () => {
-        if (!prompt.trim()) return;
+    if (!prompt.trim()) return;
 
-        setLoading(true);
-        setNewChat(false);
+    setLoading(true);
+    setNewChat(false);
 
-        try {
-            const response = await fetch(" https://ai-chat-websie.onrender.com/api/chat", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    message: prompt,
-                    threadId: currThreadId
-                })
-            });
+    const userMessage = prompt;   
+    setPrompt("");                
 
-            const res = await response.json();
-            setReply(res.reply);
-        } catch (err) {
-            console.error(err);
-        }
+    try {
+        const response = await fetch("https://ai-chat-websie.onrender.com/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                message: userMessage,
+                threadId: currThreadId
+            })
+        });
 
-        setLoading(false);
-    };
+        const res = await response.json();
+        setReply(res.reply);
+    } catch (err) {
+        console.error(err);
+    }
+
+    setLoading(false);
+};
 
     return (
         <div className="chatWindow">
