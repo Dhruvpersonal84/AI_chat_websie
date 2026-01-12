@@ -1,0 +1,1 @@
+Made an AI chat Interface web application built using React that allows the client to interact with an AI trough a clean and responsive user interface . The project focuses on frontend, API integration and user experience
